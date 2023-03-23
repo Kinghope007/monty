@@ -3,7 +3,7 @@
 #include "monty.h"
 
 /**
- * queue_node - adds a node to a stack_t stack in queue node 
+ * queue_node - adds a node to a stack_t stack in queue node
  * @stack: stack head
  * @n: number of nodes
  *
@@ -42,7 +42,7 @@ stack_t *queue_node(stack_t **stack, const int n)
 		current = current->next;
 	}
 
-	return (new):
+	return (new);
 }
 
 /**
