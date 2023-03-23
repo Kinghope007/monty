@@ -36,16 +36,20 @@ global_var var_global;
 int main(int ac, char **av)
 {
 	stack_t *stack;
-
+	FILE *file;
+	
 	stack = NULL;
 	if (ac != 2)
-	{
-		fprintf(stderr, "USAGE: monty file\n");
-		exit(EXIT_FAILURE);
-	}
-
+		error_usage();
+	
 	read_file(av[1], &stack);
     /* recordar liberar memorias */
+	file = fopen(av[1], "r");
+
+	if (!file)
+		file_error();
+
+
 	free_dlistint(stack);
 	return (0);
 }
