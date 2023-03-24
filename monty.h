@@ -77,8 +77,8 @@ extern int status;
 stack_t *queue_node(stack_t **stack, const int n);
 stack_t *add_node(stack_t **stack, const int n);
 size_t print_stack(const stack_t *stack);
-void free_stack(stack_t *stack)
-
+void free_stack(stack_t *stack);
+void opcode(stack_t **stack, char *str, unsigned int line_number);
 void read_file(char *filename, stack_t **stack);
 char *parse_line(char *line, stack_t **stack, unsigned int line_number);
 typedef void (*instruct_func)(stack_t **stack, unsigned int line_number);
