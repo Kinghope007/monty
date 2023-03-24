@@ -26,7 +26,6 @@ void file_error(char *av)
 	exit(EXIT_FAILURE);
 }
 
-global_var var_global;
 /**
  * main - driver function for monty program
  * @ac: int num of arguments
@@ -35,10 +34,13 @@ global_var var_global;
  */
 int main(int ac, char **av)
 {
-	stack_t *stack;
+	stack_t *stack = NULL;
 	FILE *file;
-	
-	stack = NULL;
+	size_t bef_len = 0;
+	char *buffer = NULL;
+	unsigned int line_number = 1;
+
+	global.push_arg = 1;
 	if (ac != 2)
 		error_usage();
 	
@@ -47,9 +49,22 @@ int main(int ac, char **av)
 	file = fopen(av[1], "r");
 
 	if (!file)
-		file_error();
-
-
-	free_dlistint(stack);
-	return (0);
+		file_error(av[1]);
+	while (getline(&buffer, &bef_len, file) != -1)
+	{
+		if (status)
+			break;
+		if (*buffer == '\n')
+		{
+			line_number++;
+			continue;
+		}
+		global.buffer = strtok(NULL, " \t\n");
+		opcode(&stack, str, line_number);
+		line_number++;
+	}
+	free(buffer);
+	free_stack(stack);
+	fclose(file);
+	exit(status);
 }
