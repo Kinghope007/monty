@@ -38,25 +38,6 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-#define INSTRUCTIONS { \
-		{"push", push},\
-		{"pall", pall},\
-		{"pint", pint},\
-		{"pop", pop},\
-		{"swap", swap},\
-		{"nop", nop},\
-		{"div", _div},\
-		{"mul", _mul},\
-		{"add", _add},\
-		{"sub", _sub},\
-		{"mod", mod},\
-		{"pchar", pchar},\
-		{"pstr", pstr},\
-		{"rotl", rotl},\
-		{"rotr", rotr},\
-		{NULL, NULL} \
-	}
-
 /**
  * struct global_variable - opcoode and its function
  * @file: the opcode
@@ -67,18 +48,13 @@ typedef struct instruction_s
  */
 typedef struct global_variable
 {
+	FILE *file;
 	int push_arg;
 	char *buffer;
 } global_var;
-global_var global;
 
-extern int status;
+extern global_var var_global;
 
-stack_t *queue_node(stack_t **stack, const int n);
-stack_t *add_node(stack_t **stack, const int n);
-size_t print_stack(const stack_t *stack);
-void free_stack(stack_t *stack);
-void opcode(stack_t **stack, char *str, unsigned int line_number);
 void read_file(char *filename, stack_t **stack);
 char *parse_line(char *line, stack_t **stack, unsigned int line_number);
 typedef void (*instruct_func)(stack_t **stack, unsigned int line_number);
