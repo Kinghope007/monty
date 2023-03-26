@@ -1,12 +1,14 @@
 #ifndef MONTY_H
 #define MONTY_H
 
-#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <sys/types.h>
 #include <unistd.h>
+#include <fcntl.h>
+#include <string.h>
 #include <ctype.h>
+#define _GNU_SOURCE
 
 /*--- Struct Definitions ---*/
 extern int push_arg;
@@ -43,18 +45,19 @@ typedef struct instruction_s
  * struct global_variable - opcoode and its function
  * @file: the opcode
  * @push_arg: function to handle the opcode
- * @buffer: pointer to
+ * @argument: pointer to
  * Description: opcode and its function
  * for stack, queues, LIFO, FIFO Holberton project
  */
 typedef struct global_variable
 {
+	char *arg;
 	FILE *file;
 	int push_arg;
-	char *buffer;
+	char *argument;
 } global_var;
 
-extern global_var var_global;
+extern global_var global;
 
 void read_file(char *filename, stack_t **stack);
 char *parse_line(char *line, stack_t **stack, unsigned int line_number);
@@ -81,10 +84,12 @@ void _add(stack_t **stack, unsigned int line_number);
 void _mul(stack_t **stack, unsigned int line_number);
 void _div(stack_t **stack, unsigned int line_number);
 void _mod(stack_t **stack, unsigned int line_number);
-
+void _stack(stack_t **stack, unsigned int line_number);
+void _queue(stack_t **stack, unsigned int line_number);
 /*Utility functions*/
 void free_dlistint(stack_t *head);
 void dobfree(stack_t **stack);
 void dobfree2(stack_t **stack);
 int _isalpha(int c);
+
 #endif
