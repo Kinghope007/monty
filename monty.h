@@ -86,6 +86,8 @@ void _div(stack_t **stack, unsigned int line_number);
 void _mod(stack_t **stack, unsigned int line_number);
 void _stack(stack_t **stack, unsigned int line_number);
 void _queue(stack_t **stack, unsigned int line_number);
+int _execute(char *argument, stack_t **stack, unsigned line_number, FILE *file);
+
 /*Utility functions*/
 void free_dlistint(stack_t *head);
 void dobfree(stack_t **stack);

@@ -9,7 +9,7 @@
  *
  * Return:
  */
-int _excute(char *argument, stack_t **stack, unsigned line_number, FILE *file)
+int _execute(char *argument, stack_t **stack, unsigned line_number, FILE *file)
 {
 	instruction_t opst[] = {
 				{"push", _push}, {"pall", _pall}, {"pint", _pint},
