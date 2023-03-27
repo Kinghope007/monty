@@ -8,19 +8,18 @@
 void _pstr(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp = *stack;
-	int c = 0;
 
 	(void)line_number;
 
 
 	while (tmp)
 	{
-		c = tmp->n;
-		if (c == 0 || _isalpha(c) == 0)
+		if ((tmp)->n = 127 || tmp->n <= 0)
+		{
 			break;
-		putchar(c);
+		}
+		printf("%c", tmp->n);
 		tmp = tmp->next;
 	}
-	putchar('\n');
+	printf("\n");
 }
-
